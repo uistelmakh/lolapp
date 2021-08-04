@@ -39,7 +39,6 @@ class MainViewController: UIViewController {
     fileprivate func createCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        
         collectionView = UICollectionView(frame: view.frame,
                                           collectionViewLayout: layout)
         collectionView.register(CategoryCollectionViewCell.nib(), forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
@@ -47,8 +46,8 @@ class MainViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        
-        collectionView.backgroundColor = .gray
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         collectionView.frame = view.bounds
     }
@@ -63,8 +62,16 @@ extension MainViewController:  UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
         
         cell.textLabel.text = category[indexPath.row].text
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        cell.viewForCell.addGestureRecognizer(tap)
         
         return cell
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        //let indexPath1 = IndexPath(row: sender.view!.tag, section: 0)
+        let linkViewController = LinksViewController()
+        self.navigationController?.pushViewController(linkViewController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -96,6 +103,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 32, left: 0, bottom: 32, right: 0)
+        return UIEdgeInsets.init(top: 12, left: 0, bottom: 32, right: 0)
     }
 }
+
+

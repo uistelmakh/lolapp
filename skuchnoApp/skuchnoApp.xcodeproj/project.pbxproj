@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA5DCE2426BAE1CB0051AB2A /* LinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5DCE2326BAE1CB0051AB2A /* LinksViewController.swift */; };
 		EACA42A526B17B5A00490BAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA42A426B17B5A00490BAF /* AppDelegate.swift */; };
 		EACA42A726B17B5A00490BAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA42A626B17B5A00490BAF /* SceneDelegate.swift */; };
 		EACA42AE26B17B5F00490BAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EACA42AD26B17B5F00490BAF /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA5DCE2326BAE1CB0051AB2A /* LinksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksViewController.swift; sourceTree = "<group>"; };
 		EACA42A126B17B5A00490BAF /* skuchnoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skuchnoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EACA42A426B17B5A00490BAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EACA42A626B17B5A00490BAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				EACA42B826B17DFE00490BAF /* MainViewController.swift */,
+				EA5DCE2326BAE1CB0051AB2A /* LinksViewController.swift */,
 				EACA42BA26B17E1000490BAF /* SettingsViewController.swift */,
 			);
 			path = Controllers;
@@ -185,6 +188,7 @@
 				EAF6A7A226B972110086211D /* Category.swift in Sources */,
 				EACA42A526B17B5A00490BAF /* AppDelegate.swift in Sources */,
 				EAF6A7AE26B9A6760086211D /* HeaderCategoryCollectionReusableView.swift in Sources */,
+				EA5DCE2426BAE1CB0051AB2A /* LinksViewController.swift in Sources */,
 				EACA42A726B17B5A00490BAF /* SceneDelegate.swift in Sources */,
 				EAF6A7AB26B9A01A0086211D /* CategoryCollectionViewCell.swift in Sources */,
 				EACA42BB26B17E1000490BAF /* SettingsViewController.swift in Sources */,

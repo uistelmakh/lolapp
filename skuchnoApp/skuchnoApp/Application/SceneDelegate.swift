@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     fileprivate func createMainViewNav() -> UINavigationController {
         let mainViewController = MainViewController()
         mainViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "book"), tag: 0)
+        
         let mainNavigationController = UINavigationController(rootViewController: mainViewController)
         return mainNavigationController
     }
@@ -39,6 +40,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     fileprivate func createTabBar() -> UITabBarController {
         let tabbar = UITabBarController()
         tabbar.viewControllers = [createMainViewNav(), createSettingsViewNav()]
+        tabbar.tabBar.layer.masksToBounds = true
+        tabbar.tabBar.layer.cornerRadius = 16
+        tabbar.tabBar.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
         return tabbar
     }
 
