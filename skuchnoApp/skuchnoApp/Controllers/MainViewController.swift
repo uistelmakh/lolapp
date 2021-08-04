@@ -9,113 +9,93 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    var helpfualButton = UIButton()
-    var notHelpfualButton = UIButton()
-    var songButton = UIButton()
-    var questionLabel = UILabel()
-    let stackView = UIStackView()
+    var collectionView: UICollectionView!
+    var category = [Category]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
-        view.addSubview(stackView)
-        createButtons()
-        createLabels()
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        createConstrains()
-    }
-    
-    //MARK: - Create Labels
-    
-    fileprivate func createLabels() {
-        questionLabel.text = "Как будешь проводить время?"
-        questionLabel.textAlignment = .center
-        questionLabel.textColor = .white
-        questionLabel.font = .systemFont(ofSize: 30, weight: .bold)
-        questionLabel.numberOfLines = 0
-//        questionLabel.adjustsFontSizeToFitWidth = true
-//        questionLabel.minimumScaleFactor = 0.5
-        stackView.addSubview(questionLabel)
-    }
-    
-    //MARK: - Create Buttons
-    fileprivate func createButtons() {
-        createButtonHelpfual()
-        createButtonNotHelpfual()
-    }
-    
-    fileprivate func createButtonHelpfual() {
-        helpfualButton.layer.backgroundColor = CGColor(red: 37.0/255.0, green: 37.0/255.0, blue: 37.0/255.0, alpha: 1.0)
-        helpfualButton.setTitle("Полезно 😁", for: .normal)
-        helpfualButton.setTitleColor(.white, for: .normal)
-        helpfualButton.titleLabel?.font = .systemFont(ofSize: 25, weight: .bold)
-        helpfualButton.layer.cornerRadius = 24
-//        helpfualButton.layer.borderWidth = 3
-//        helpfualButton.layer.borderColor = CGColor(red: 247.0/255.0, green: 182.0/255.0, blue: 43.0/255.0, alpha: 1.0)
-        helpfualButton.addTarget(self, action: #selector(helpfualAction), for: .touchUpInside)
-        stackView.addSubview(helpfualButton)
-    }
-    
-    fileprivate func createButtonNotHelpfual() {
-        notHelpfualButton.layer.backgroundColor = CGColor(red: 37.0/255.0, green: 37.0/255.0, blue: 37.0/255.0, alpha: 1.0)
-        notHelpfualButton.setTitle("Бесполезно 😕", for: .normal)
-        notHelpfualButton.setTitleColor(.white, for: .normal)
-        notHelpfualButton.titleLabel?.font = .systemFont(ofSize: 25, weight: .bold)
-        notHelpfualButton.layer.cornerRadius = 24
-//        notHelpfualButton.layer.borderWidth = 3
-//        notHelpfualButton.layer.borderColor = CGColor(red: 247.0/255.0, green: 182.0/255.0, blue: 43.0/255.0, alpha: 1.0)
-        notHelpfualButton.addTarget(self, action: #selector(notHelpfualAction), for: .touchUpInside)
-        stackView.addSubview(notHelpfualButton)
-    }
-    
-    // actions
-    
-    @objc func helpfualAction() {
-        let helpfualViewController = HelpfualViewController()
-        navigationController?.pushViewController(helpfualViewController, animated: true)
-    }
-    
-    @objc func notHelpfualAction() {
-        let notHelpfualViewController = NotHelpfualViewController()
-        navigationController?.pushViewController(notHelpfualViewController, animated: true)
-    }
-    //MARK: - Autolayout
-    fileprivate func createConstrains() {
-        helpfualButton.translatesAutoresizingMaskIntoConstraints = false
-        notHelpfualButton.translatesAutoresizingMaskIntoConstraints = false
-        questionLabel.translatesAutoresizingMaskIntoConstraints = false
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        createCollectionView()
+        addCategories()
         
-        //buttons
-        helpfualButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        helpfualButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 0).isActive = true
-        helpfualButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 0).isActive = true
+    }
+    
+    fileprivate func addCategories() {
+        let ct1 = Category(text: "📚 Учиться")
+        let ct2 = Category(text: "👀 Смотреть")
+        let ct3 = Category(text: "🎧 Слушать")
+        let ct4 = Category(text: "📖 Читать")
+        let ct5 = Category(text: "🚶‍♂️ Гулять")
+        let ct6 = Category(text: "🎼 На фон")
+        
+        category.append(ct1)
+        category.append(ct2)
+        category.append(ct3)
+        category.append(ct4)
+        category.append(ct5)
+        category.append(ct6)
+    }
+    
+    fileprivate func createCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        
+        collectionView = UICollectionView(frame: view.frame,
+                                          collectionViewLayout: layout)
+        collectionView.register(CategoryCollectionViewCell.nib(), forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
+        collectionView.register(HeaderCategoryCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCategoryCollectionReusableView.identifier)
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        collectionView.backgroundColor = .gray
+        view.addSubview(collectionView)
+        collectionView.frame = view.bounds
+    }
+}
 
-        notHelpfualButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        notHelpfualButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 0).isActive = true
-        notHelpfualButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 0).isActive = true
+extension MainViewController:  UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return category.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
         
-        //labels
+        cell.textLabel.text = category[indexPath.row].text
         
-        questionLabel.topAnchor.constraint(equalTo: stackView.topAnchor).isActive = true
-        questionLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 0).isActive = true
-        questionLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 0).isActive = true
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCategoryCollectionReusableView.identifier, for: indexPath) as? HeaderCategoryCollectionReusableView else { return UICollectionReusableView() }
         
-        // stackView
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .center
-        stackView.spacing = 40
+        header.configure()
         
-        stackView.addArrangedSubview(questionLabel)
-        stackView.addArrangedSubview(helpfualButton)
-        stackView.addArrangedSubview(notHelpfualButton)
-        
-        stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
-        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.size.width, height: 120)
+    }
+    
+    
+}
+
+extension MainViewController:  UICollectionViewDelegate {
+    
+}
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width - 32, height: 70)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 32, left: 0, bottom: 32, right: 0)
     }
 }
