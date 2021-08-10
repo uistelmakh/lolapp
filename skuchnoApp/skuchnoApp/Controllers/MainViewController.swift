@@ -10,30 +10,13 @@ import UIKit
 class MainViewController: UIViewController {
     
     var collectionView: UICollectionView!
-    var category = [Category]()
+    
+    var menu = Menu()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         createCollectionView()
-        addCategories()
-        
-    }
-    
-    fileprivate func addCategories() {
-        let ct1 = Category(text: "📚 Учиться")
-        let ct2 = Category(text: "👀 Смотреть")
-        let ct3 = Category(text: "🎧 Слушать")
-        let ct4 = Category(text: "📖 Читать")
-        let ct5 = Category(text: "🚶‍♂️ Гулять")
-        let ct6 = Category(text: "🎼 На фон")
-        
-        category.append(ct1)
-        category.append(ct2)
-        category.append(ct3)
-        category.append(ct4)
-        category.append(ct5)
-        category.append(ct6)
     }
     
     fileprivate func createCollectionView() {
@@ -55,13 +38,17 @@ class MainViewController: UIViewController {
 
 extension MainViewController:  UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return category.count
+        
+        return menu.category.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.textLabel.text = category[indexPath.row].text
+        let category = menu.category[indexPath.row]
+        cell.setupCell(category: category)
+        
+        cell.viewForCell.tag = indexPath.row
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         cell.viewForCell.addGestureRecognizer(tap)
         
@@ -69,8 +56,10 @@ extension MainViewController:  UICollectionViewDataSource {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        //let indexPath1 = IndexPath(row: sender.view!.tag, section: 0)
+        let indexPath1 = IndexPath(row: sender.view!.tag, section: 0)
+        let menu = self.menu.category[indexPath1.row]
         let linkViewController = LinksViewController()
+        linkViewController.menu = menu
         self.navigationController?.pushViewController(linkViewController, animated: true)
     }
     

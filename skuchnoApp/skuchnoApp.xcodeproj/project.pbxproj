@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		EA5DCE2426BAE1CB0051AB2A /* LinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5DCE2326BAE1CB0051AB2A /* LinksViewController.swift */; };
+		EAC90BB926BC22D000F7D93F /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC90BB826BC22D000F7D93F /* WebViewViewController.swift */; };
+		EAC90BC026BC2FAC00F7D93F /* LinksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC90BBE26BC2FAC00F7D93F /* LinksCollectionViewCell.swift */; };
+		EAC90BC126BC2FAC00F7D93F /* LinksCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC90BBF26BC2FAC00F7D93F /* LinksCollectionViewCell.xib */; };
 		EACA42A526B17B5A00490BAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA42A426B17B5A00490BAF /* AppDelegate.swift */; };
 		EACA42A726B17B5A00490BAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA42A626B17B5A00490BAF /* SceneDelegate.swift */; };
 		EACA42AE26B17B5F00490BAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EACA42AD26B17B5F00490BAF /* Assets.xcassets */; };
@@ -22,6 +25,9 @@
 
 /* Begin PBXFileReference section */
 		EA5DCE2326BAE1CB0051AB2A /* LinksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksViewController.swift; sourceTree = "<group>"; };
+		EAC90BB826BC22D000F7D93F /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
+		EAC90BBE26BC2FAC00F7D93F /* LinksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksCollectionViewCell.swift; sourceTree = "<group>"; };
+		EAC90BBF26BC2FAC00F7D93F /* LinksCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinksCollectionViewCell.xib; sourceTree = "<group>"; };
 		EACA42A126B17B5A00490BAF /* skuchnoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skuchnoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EACA42A426B17B5A00490BAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EACA42A626B17B5A00490BAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +58,7 @@
 			children = (
 				EACA42B826B17DFE00490BAF /* MainViewController.swift */,
 				EA5DCE2326BAE1CB0051AB2A /* LinksViewController.swift */,
+				EAC90BB826BC22D000F7D93F /* WebViewViewController.swift */,
 				EACA42BA26B17E1000490BAF /* SettingsViewController.swift */,
 			);
 			path = Controllers;
@@ -110,6 +117,8 @@
 				EAF6A7AD26B9A6760086211D /* HeaderCategoryCollectionReusableView.swift */,
 				EAF6A7A926B9A01A0086211D /* CategoryCollectionViewCell.swift */,
 				EAF6A7AA26B9A01A0086211D /* CategoryCollectionViewCell.xib */,
+				EAC90BBE26BC2FAC00F7D93F /* LinksCollectionViewCell.swift */,
+				EAC90BBF26BC2FAC00F7D93F /* LinksCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -171,6 +180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAC90BC126BC2FAC00F7D93F /* LinksCollectionViewCell.xib in Resources */,
 				EAF6A7AC26B9A01A0086211D /* CategoryCollectionViewCell.xib in Resources */,
 				EACA42B126B17B5F00490BAF /* LaunchScreen.storyboard in Resources */,
 				EACA42AE26B17B5F00490BAF /* Assets.xcassets in Resources */,
@@ -191,6 +201,8 @@
 				EA5DCE2426BAE1CB0051AB2A /* LinksViewController.swift in Sources */,
 				EACA42A726B17B5A00490BAF /* SceneDelegate.swift in Sources */,
 				EAF6A7AB26B9A01A0086211D /* CategoryCollectionViewCell.swift in Sources */,
+				EAC90BB926BC22D000F7D93F /* WebViewViewController.swift in Sources */,
+				EAC90BC026BC2FAC00F7D93F /* LinksCollectionViewCell.swift in Sources */,
 				EACA42BB26B17E1000490BAF /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

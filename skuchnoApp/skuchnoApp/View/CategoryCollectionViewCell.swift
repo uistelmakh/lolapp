@@ -30,5 +30,9 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         imageGo.tintColor = UIColor(red: 101.0/255.0, green: 67.0/255.0, blue: 230.0/255.0, alpha: 1.0)
     }
     
+    func setupCell(category: Category) {
+        self.textLabel.text = category.text
+    }
+    
     
 }
