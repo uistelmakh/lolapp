@@ -12,8 +12,14 @@ class LinksViewController: UIViewController {
     var linksCollectionView: UICollectionView!
     
     var menu: Category!
-    var selectedCategory: Category?
-    
+    var selectedCategory: Category? {
+        didSet {
+            if let category = self.selectedCategory {
+                self.title = category.text
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

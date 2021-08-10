@@ -15,6 +15,9 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Категории"
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.toolbar.barTintColor = UIColor(red: 101.0/255.0, green: 67.0/255.0, blue: 230.0/255.0, alpha: 1.0)
         view.backgroundColor = .white
         createCollectionView()
     }

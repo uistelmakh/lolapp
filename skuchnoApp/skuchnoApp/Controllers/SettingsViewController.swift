@@ -13,6 +13,8 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Настройки"
+        //self.navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
@@ -38,15 +40,49 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - UITableViewDataSource
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Подписка"
+        } else if section == 1 {
+            return "Использование"
+        } else if section == 2 {
+            return "Еще"
+        }
+        return "Поделиться"
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return 1
+        } else if section == 2 {
+            return 2
+        }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: identifier)
-
-        cell.textLabel?.text = "Row - section \(indexPath.section)"
-        cell.detailTextLabel?.text = "Row \(indexPath.row)"
+        
+        if indexPath.section == 0 {
+            cell.textLabel?.text = "Управление подпиской"
+        } else if indexPath.section == 1 {
+            cell.textLabel?.text = "Как это работает?"
+        } else if indexPath.section == 2 {
+            if indexPath.row == 0 {
+                cell.textLabel?.text = "Связаться с нами"
+            } else if indexPath.row == 1 {
+                cell.textLabel?.text = "Оценить приложение"
+            }
+        } else if indexPath.section == 3 {
+            cell.textLabel?.text = "Поделиться приложением"
+        }
         
         return cell
     }
