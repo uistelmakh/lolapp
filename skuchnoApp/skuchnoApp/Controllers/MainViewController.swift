@@ -18,6 +18,8 @@ class MainViewController: UIViewController {
         title = "Категории"
 //        self.navigationController?.navigationBar.prefersLargeTitles = true
 //        navigationController?.toolbar.barTintColor = UIColor(red: 101.0/255.0, green: 67.0/255.0, blue: 230.0/255.0, alpha: 1.0)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left.circle.fill")
         view.backgroundColor = .white
         createCollectionView()
     }

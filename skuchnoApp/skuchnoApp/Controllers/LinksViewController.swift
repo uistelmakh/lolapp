@@ -24,10 +24,13 @@ class LinksViewController: UIViewController {
         super.viewDidLoad()
         
         //let backImage = UIImage(systemName: "chevron.left.circle.fill")
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-//        self.navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left.circle.fill")
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left.circle.fill")
 //
 //        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.left.circle.fill")
+        
+        //self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = .white
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical

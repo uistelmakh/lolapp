@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class SettingsViewController: UIViewController {
     let identifier = "cell"
@@ -86,6 +87,21 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.section == 2 {
+            if indexPath.row == 1 {
+                SKStoreReviewController.requestReview()
+            }
+            
+        }
+    }
+    
+    
     
     
 }
